@@ -1,21 +1,26 @@
-﻿namespace ToDoApp.Data.Sqlite.Services;
+﻿
+namespace ToDoApp.Data.Sqlite.Services;
 
 public class ToDoService(AppDbContext dbContext) : ITodoService
 {
 
     public async Task<IEnumerable<ToDo>?> GetToDosAsync()
     {
-        return await dbContext.ToDos.ToListAsync();        
+        return await dbContext.ToDos
+         .AsNoTracking()
+         .ToListAsync();
     }
 
     public async Task<ToDo?> GetToDoByIdAsync(int id)
     {
-        return await dbContext.ToDos.FindAsync(id);
+        return await dbContext.ToDos
+         .AsNoTracking()
+         .FirstOrDefaultAsync(t => t.Id == id);
     }
 
     public async Task<ToDo?> AddToDoAsync(ToDo toDo)
     {
-        dbContext.ToDos.Add(toDo);
+        await dbContext.ToDos.AddAsync(toDo);
         await dbContext.SaveChangesAsync();
         return toDo;
     }
