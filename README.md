@@ -29,6 +29,7 @@ Vishwa is the primary architect of the ToDoApp, responsible for the architecture
 - Traditional ASP.NET Core MVC-based API.
 - Uses controller classes with `[ApiController]` and standard routing.
 - Good for teams familiar with conventional ASP.NET Web API development.
+- Swagger/OpenAPI documentation available.
 
 ---
 
@@ -36,6 +37,7 @@ Vishwa is the primary architect of the ToDoApp, responsible for the architecture
 - Uses ASP.NET Core **Minimal APIs**.
 - Lightweight and concise, perfect for microservices or smaller APIs.
 - Demonstrates handler functions with route mappings.
+- Swagger/OpenAPI documentation available (accessible at `/swagger` when running).
 
 ---
 
@@ -58,6 +60,17 @@ Each API project:
 - Has its **own solution file (.sln)**.
 - Can be run independently via CLI or Visual Studio.
 - Shares the same underlying SQLite data layer to enable consistent comparison.
+
+**To run a project:**
+```bash
+cd rest-apis.styles.examples/src/ToDoApp.RestApi.Minimal   # or any other API project
+dotnet run
+```
+
+**Testing:**
+- Most projects include Swagger UI (accessible at `/swagger` when running)
+- All APIs expose endpoints under the `/api/todos` base path
+- Standard CRUD operations: GET, POST, PUT, DELETE
 
 ### Prerequisites
 - [.NET SDK 9+](https://dotnet.microsoft.com)
